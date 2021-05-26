@@ -101,7 +101,7 @@ class Car {
                 Body.rotate(this.wheelB, Math.PI / 36);
                 break;
             case "JUMP":
-                Matter.Body.applyForce(this.body,this.body.position,{x: 0,y:-0.10});
+                Matter.Body.applyForce(this.body,this.frame.position,{x: 0,y:-0.10});
         }
     }
 
