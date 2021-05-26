@@ -6,6 +6,7 @@ class Car {
         this.h = h;
         this.composite;
         this.body;
+        this.frame;
         this.wheelA;
         this.wheelB;
         this.maxVelocityX = 3;
@@ -34,6 +35,7 @@ class Car {
             density: 0.0002
         });
         this.body.label = 'car-body';
+        this.frame=body;
         this.wheelA = Bodies.circle(xx + wheelAOffset, yy + wheelYOffset, wheelRadius, {
             collisionFilter: {
                 group: group
@@ -101,7 +103,7 @@ class Car {
                 Body.rotate(this.wheelB, Math.PI / 36);
                 break;
             case "JUMP":
-                Matter.Body.applyForce(this.body,this.frame.position,{x: 0,y:-0.10});
+                Matter.Body.applyForce(this.frame,this.frame.position,{x: 0,y:-0.10});
         }
     }
 
