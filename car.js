@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, w, h, wheelRadius, passenger1Id, passenger2Id,flipCar) {
+    constructor(x, y, w, h, wheelRadius, passenger1Id, passenger2Id, flipCar) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -11,7 +11,7 @@ class Car {
         this.maxVelocityX = config.car.maxVelocity;
         this.passenger1Id = passenger1Id;
         this.passenger2Id = passenger2Id;
-        this.flipCar=flipCar;
+        this.flipCar = flipCar;
         this.createCarComposite(x, y, w, h, wheelRadius)
         Composite.add(world, this.composite);
     }
@@ -24,30 +24,30 @@ class Car {
         var group = Body.nextGroup(true),
             wheelYOffset = height - height * 0.5,
             seatsYOffset = config.car.seats.yOffset,
-            carImageScale=0.4,
-            passengerImageScale=0.15,
-            wheelImageScale=0.335,
+            carImageScale = 0.4,
+            passengerImageScale = 0.15,
+            wheelImageScale = 0.335,
             wheelAOffset, wheelBOffset, frontSeatXOffset, backSeatXOffset,
             carImage, wheelImage, passenger1Image, passenger2Image;
-        if(this.flipCar){
+        if (this.flipCar) {
             wheelAOffset = width * 0.5 - wheelRadius - 2.5,
-            wheelBOffset = -width * 0.5 + wheelRadius + 9,
-            wheelYOffset = height - height * 0.5,
-            frontSeatXOffset = -config.car.frontSeat.xOffset,
-            backSeatXOffset = -config.car.backSeat.xOffset;
-            carImage='images/flipcar.png',
-            wheelImage='images/flipw1.png',
-            passenger1Image='images/flipf' + max(1, this.passenger1Id % 9) + '.png',
-            passenger2Image='images/flipf' + max(1, this.passenger2Id % 9) + '.png';
-        }else{
+                wheelBOffset = -width * 0.5 + wheelRadius + 9,
+                wheelYOffset = height - height * 0.5,
+                frontSeatXOffset = -config.car.frontSeat.xOffset,
+                backSeatXOffset = -config.car.backSeat.xOffset;
+            carImage = 'images/flipcar.png',
+                wheelImage = 'images/flipw1.png',
+                passenger1Image = 'images/flipf' + max(1, this.passenger1Id % 9) + '.png',
+                passenger2Image = 'images/flipf' + max(1, this.passenger2Id % 9) + '.png';
+        } else {
             wheelAOffset = -width * 0.5 + wheelRadius + 2.5,
-            wheelBOffset = width * 0.5 - wheelRadius - 9,
-            frontSeatXOffset = config.car.frontSeat.xOffset,
-            backSeatXOffset = config.car.backSeat.xOffset,
-            carImage='images/car.png',
-            wheelImage='images/w1.png',
-            passenger1Image='images/f' + max(1, this.passenger1Id % 9) + '.png',
-            passenger2Image='images/f' + max(1, this.passenger2Id % 9) + '.png';
+                wheelBOffset = width * 0.5 - wheelRadius - 9,
+                frontSeatXOffset = config.car.frontSeat.xOffset,
+                backSeatXOffset = config.car.backSeat.xOffset,
+                carImage = 'images/car.png',
+                wheelImage = 'images/w1.png',
+                passenger1Image = 'images/f' + max(1, this.passenger1Id % 9) + '.png',
+                passenger2Image = 'images/f' + max(1, this.passenger2Id % 9) + '.png';
         }
         this.composite = Composite.create({ label: 'car' })
         this.body = Bodies.rectangle(xx, yy, width, height, {
@@ -219,9 +219,9 @@ class Car {
         var tempCar;
         this.remove();
         if (this.passenger2Id == 0) {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, passenger.passengerId,this.flipCar);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, passenger.passengerId, this.flipCar);
         } else {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, passenger.passengerId, this.passenger2Id,this.flipCar);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, passenger.passengerId, this.passenger2Id, this.flipCar);
         }
         Matter.Body.setAngle(tempCar.body, car.body.angle)
         Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
@@ -230,10 +230,10 @@ class Car {
         car = tempCar;
     }
 
-    flipDirection(){
+    flipDirection() {
         var tempCar;
         this.remove();
-        tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, this.passenger2Id,this.flipCar);
+        tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, this.passenger2Id, this.flipCar);
         Matter.Body.setAngle(tempCar.body, car.body.angle)
         Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
         Matter.Body.setAngle(tempCar.wheelB, car.wheelB.angle)
@@ -244,9 +244,9 @@ class Car {
         var tempCar;
         this.remove();
         if (this.passenger2Id == passenger.passengerId) {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, 0,this.flipCar);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, 0, this.flipCar);
         } else {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, 0, this.passenger2Id,this.flipCar);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, 0, this.passenger2Id, this.flipCar);
         }
         Matter.Body.setAngle(tempCar.body, car.body.angle)
         Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
@@ -261,8 +261,8 @@ class Car {
                 Composite.translate(this.composite, { x: -this.maxVelocityX, y: 0 })
                 Body.rotate(this.wheelA, -Math.PI / 9);
                 Body.rotate(this.wheelB, -Math.PI / 9);
-                if(!this.flipCar){
-                    this.flipCar=true;
+                if (!this.flipCar) {
+                    this.flipCar = true;
                     this.flipDirection();
                 }
                 break;
@@ -270,8 +270,8 @@ class Car {
                 Composite.translate(this.composite, { x: this.maxVelocityX, y: 0 })
                 Body.rotate(this.wheelA, Math.PI / 9);
                 Body.rotate(this.wheelB, Math.PI / 9);
-                if(this.flipCar){
-                    this.flipCar=false;
+                if (this.flipCar) {
+                    this.flipCar = false;
                     this.flipDirection();
                 }
                 break;

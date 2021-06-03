@@ -150,10 +150,11 @@ function keyPressed() {
         console.log("Creating new passenger")
         var randomDestination = getRandomDestination();
         var carX = car.getPosition().x;
+        var passengerY = config.canvas.height - wallBottom.h - config.passenger.h;
         if (carX > config.canvas.width * 0.7)
-            new Passenger(passengerId, carX - random(300, 500), 450, config.passenger.w, config.passenger.h, randomDestination);
+            new Passenger(passengerId, carX - random(300, 500), passengerY, config.passenger.w, config.passenger.h, randomDestination);
         else
-            new Passenger(passengerId, carX + random(300, 500), 450, config.passenger.w, config.passenger.h, randomDestination);
+            new Passenger(passengerId, carX + random(300, 500), passengerY, config.passenger.w, config.passenger.h, randomDestination);
         passengerId += 1;
     }
     // drop passengers upon UP_ARROW key press
