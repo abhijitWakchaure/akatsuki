@@ -1,7 +1,21 @@
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
 }
+
+.bg {
+  background-image: url("images/places/Blank.jpg");
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(3px) contrast(85%);
+  position: fixed;
+  z-index: -999;
+}
+
 #leftDiv {
   font-size: 0.9em;
   position: fixed;
@@ -15,6 +29,7 @@ body {
   background: #111;
   box-shadow: 5px 10px 10px #888888;
   min-width: 350px;
+  opacity: 0.85;
 }
 #rightDiv {
   font-size: 0.9em;
@@ -29,6 +44,7 @@ body {
   background: #111;
   box-shadow: 5px 10px 10px #888888;
   min-width: 400px;
+  opacity: 0.85;
 }
 
 #notice {

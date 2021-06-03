@@ -32,14 +32,15 @@
   <script src="wall.js?time=123456789" type="text/javascript"></script>
   <script src="platform.js?time=123456789" type="text/javascript"></script>
   <body>
-    <div id="leftDiv">
+    <div class="bg"></div>
+    <div class="z-999" id="leftDiv">
       <div class="row animate__animated my-1" id="friendsInCar">
         <div class="col-6">Friends in Car:</div>
         <div class="col-6 text-right">0 / 2</div>
       </div>
     </div>
-    <div id="notice" class="animate__animated"></div>
-    <div id="rightDiv">
+    <div class="z-999 animate__animated" id="notice"></div>
+    <div class="z-999" id="rightDiv">
       <div class="row animate__animated my-1" id="score">
         <div class="col-6">Driver Name:</div>
         <div class="col-6 text-right">Anonymous</div>
@@ -63,5 +64,6 @@
         </div>
       </div>
     </div>
+    <div class="z-999" id="canvas">&nbsp;</div>
   </body>
 </html>

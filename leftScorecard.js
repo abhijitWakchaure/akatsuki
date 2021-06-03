@@ -14,6 +14,16 @@ class LeftScorecard {
                 leftScorecard.animateNotice();
             }
         }
+        if (passengersInCar.length > 0) {
+            var nextDestination = passengersInCar[0].destination;
+            if (typeof nextDestination !== 'undefined' && nextDestination != null)
+                $(".bg").css('background-image', 'url(images/places/' + nextDestination + '.jpg)')
+            else
+                $(".bg").css('background-image', 'url(images/places/Blank.jpg)')
+        }
+        else {
+            $(".bg").css('background-image', 'url(images/places/Blank.jpg)')
+        }
     }
 
     animateFrindsInCar() {

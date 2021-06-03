@@ -36,7 +36,7 @@ function setup() {
 
     // create renderer
     render = Render.create({
-        element: document.body,
+        element: document.getElementById("canvas"),
         engine: engine,
         options: {
             width: config.canvas.width,
