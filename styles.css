@@ -3,6 +3,7 @@ body {
   margin: 0;
 }
 #leftDiv {
+  font-size: 0.9em;
   position: fixed;
   color: #fff;
   padding: 1em;
@@ -16,6 +17,7 @@ body {
   min-width: 350px;
 }
 #rightDiv {
+  font-size: 0.9em;
   position: fixed;
   color: #fff;
   right: 0;
@@ -26,7 +28,7 @@ body {
   font-family: "Orbitron", sans-serif;
   background: #111;
   box-shadow: 5px 10px 10px #888888;
-  min-width: 350px;
+  min-width: 400px;
 }
 
 #notice {

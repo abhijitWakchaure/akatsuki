@@ -25,7 +25,7 @@ class Car {
             wheelYOffset = height - height * 0.5,
             seatsYOffset = config.car.seats.yOffset,
             carImageScale = 0.5,
-            passengerImageScale = 0.1875,
+            passengerImageScale = 0.2050,
             wheelImageScale = 0.4188,
             wheelAOffset, wheelBOffset, frontSeatXOffset, backSeatXOffset,
             carImage, wheelImage, passenger1Image, passenger2Image;

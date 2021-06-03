@@ -8,8 +8,8 @@ class Passenger {
             render: {
                 sprite: {
                     texture: 'images/p' + max(1, id % 9) + '.png',
-                    xScale: 0.3,
-                    yScale: 0.3,
+                    xScale: 0.375,
+                    yScale: 0.375,
                 }
             }
         });
