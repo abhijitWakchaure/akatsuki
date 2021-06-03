@@ -24,14 +24,14 @@ class Car {
         var group = Body.nextGroup(true),
             wheelYOffset = height - height * 0.5,
             seatsYOffset = config.car.seats.yOffset,
-            carImageScale = 0.4,
-            passengerImageScale = 0.15,
-            wheelImageScale = 0.335,
+            carImageScale = 0.5,
+            passengerImageScale = 0.1875,
+            wheelImageScale = 0.4188,
             wheelAOffset, wheelBOffset, frontSeatXOffset, backSeatXOffset,
             carImage, wheelImage, passenger1Image, passenger2Image;
         if (this.flipCar) {
-            wheelAOffset = width * 0.5 - wheelRadius - 2.5,
-                wheelBOffset = -width * 0.5 + wheelRadius + 9,
+            wheelAOffset = width * 0.5 - wheelRadius - 3.13,
+                wheelBOffset = -width * 0.5 + wheelRadius + 11.25,
                 wheelYOffset = height - height * 0.5,
                 frontSeatXOffset = -config.car.frontSeat.xOffset,
                 backSeatXOffset = -config.car.backSeat.xOffset;
@@ -40,8 +40,8 @@ class Car {
                 passenger1Image = 'images/flipf' + max(1, this.passenger1Id % 9) + '.png',
                 passenger2Image = 'images/flipf' + max(1, this.passenger2Id % 9) + '.png';
         } else {
-            wheelAOffset = -width * 0.5 + wheelRadius + 2.5,
-                wheelBOffset = width * 0.5 - wheelRadius - 9,
+            wheelAOffset = -width * 0.5 + wheelRadius + 3.13,
+                wheelBOffset = width * 0.5 - wheelRadius - 11.25,
                 frontSeatXOffset = config.car.frontSeat.xOffset,
                 backSeatXOffset = config.car.backSeat.xOffset,
                 carImage = 'images/car.png',
@@ -276,7 +276,7 @@ class Car {
                 }
                 break;
             case "JUMP":
-                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.110 });
+                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.140 });
         }
     }
 }
