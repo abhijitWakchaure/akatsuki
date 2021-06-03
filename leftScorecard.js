@@ -9,12 +9,19 @@ class LeftScorecard {
             if (passengersInCar[i].patience <= 0) {
                 console.log("Game Over")
                 noLoop();
+                $("#notice").html("Game Over!");
+                $("#notice").show();
+                leftScorecard.animateNotice();
             }
         }
     }
 
     animateFrindsInCar() {
         $("#friendsInCar").addClass("animate__flash");
+    }
+
+    animateNotice() {
+        $("#notice").addClass("animate__slideInDown");
     }
 
     show() {

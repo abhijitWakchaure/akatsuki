@@ -42,7 +42,8 @@ function setup() {
             showAngleIndicator: config.debug,
             showCollisions: config.debug,
             wireframes: config.debug,
-            background: "#87CEEB"
+            showDebug: config.debug,
+            background: 'transparent'
         }
     });
 

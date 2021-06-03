@@ -29,6 +29,23 @@ body {
   min-width: 350px;
 }
 
+#notice {
+  position: fixed;
+  top: 0;
+  left: 40%;
+  color: #fff;
+  margin: 1em;
+  padding: 0.7em 1em;
+  border: 5px solid #eee;
+  border-radius: 25px;
+  font-family: "Orbitron", sans-serif;
+  background: #111;
+  box-shadow: 5px 10px 10px #888888;
+  min-width: 350px;
+  text-align: center;
+  display: none;
+}
+
 .per-wrapper {
   background-color: #27ae60;
 }
