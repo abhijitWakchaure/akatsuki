@@ -5,20 +5,20 @@ const config = {
         margin: 0
     },
     car: {
-        width: 280,
-        height: 60,
-        wheelRadius: 30,
-        maxVelocity: 5,
+        width: 140,
+        height: 30,
+        wheelRadius: 15,
+        maxVelocity: 9,
         seats: {
-            yOffset: 60,
-            w: 70,
-            h: 60
+            yOffset: 30,
+            w: 35,
+            h: 30
         },
         frontSeat: {
-            xOffset: -10
+            xOffset: -5
         },
         backSeat: {
-            xOffset: -77
+            xOffset: -38.5
         }
     },
     platform: {
@@ -29,8 +29,8 @@ const config = {
         destinations: ["Bangalore", "Hyderabad", "Chennai", "Mumbai", "Pune", "Kolkata", "Jaipur", "Delhi", "Gangtok"]
     },
     passenger: {
-        w: 70,
-        h: 150
+        w: 35,
+        h: 75
     },
     debug: false
 }

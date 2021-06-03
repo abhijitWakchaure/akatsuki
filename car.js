@@ -24,14 +24,14 @@ class Car {
         var group = Body.nextGroup(true),
             wheelYOffset = height - height * 0.5,
             seatsYOffset = config.car.seats.yOffset,
-            carImageScale=0.8,
-            passengerImageScale=0.3,
-            wheelImageScale=0.67,
+            carImageScale=0.4,
+            passengerImageScale=0.15,
+            wheelImageScale=0.335,
             wheelAOffset, wheelBOffset, frontSeatXOffset, backSeatXOffset,
             carImage, wheelImage, passenger1Image, passenger2Image;
         if(this.flipCar){
-            wheelAOffset = width * 0.5 - wheelRadius - 5,
-            wheelBOffset = -width * 0.5 + wheelRadius + 18,
+            wheelAOffset = width * 0.5 - wheelRadius - 2.5,
+            wheelBOffset = -width * 0.5 + wheelRadius + 9,
             wheelYOffset = height - height * 0.5,
             frontSeatXOffset = -config.car.frontSeat.xOffset,
             backSeatXOffset = -config.car.backSeat.xOffset;
@@ -40,8 +40,8 @@ class Car {
             passenger1Image='images/flipf' + max(1, this.passenger1Id % 9) + '.png',
             passenger2Image='images/flipf' + max(1, this.passenger2Id % 9) + '.png';
         }else{
-            wheelAOffset = -width * 0.5 + wheelRadius + 5,
-            wheelBOffset = width * 0.5 - wheelRadius - 18,
+            wheelAOffset = -width * 0.5 + wheelRadius + 2.5,
+            wheelBOffset = width * 0.5 - wheelRadius - 9,
             frontSeatXOffset = config.car.frontSeat.xOffset,
             backSeatXOffset = config.car.backSeat.xOffset,
             carImage='images/car.png',
@@ -119,7 +119,7 @@ class Car {
                     yScale: wheelImageScale,
                 }
             },
-            density: 0.00081
+            density: 0.00085
         }
         );
         this.wheelA.label = 'car-wheelA';
@@ -259,8 +259,8 @@ class Car {
         switch (direction) {
             case "LEFT":
                 Composite.translate(this.composite, { x: -this.maxVelocityX, y: 0 })
-                Body.rotate(this.wheelA, -Math.PI / 18);
-                Body.rotate(this.wheelB, -Math.PI / 18);
+                Body.rotate(this.wheelA, -Math.PI / 9);
+                Body.rotate(this.wheelB, -Math.PI / 9);
                 if(!this.flipCar){
                     this.flipCar=true;
                     this.flipDirection();
@@ -268,15 +268,15 @@ class Car {
                 break;
             case "RIGHT":
                 Composite.translate(this.composite, { x: this.maxVelocityX, y: 0 })
-                Body.rotate(this.wheelA, Math.PI / 18);
-                Body.rotate(this.wheelB, Math.PI / 18);
+                Body.rotate(this.wheelA, Math.PI / 9);
+                Body.rotate(this.wheelB, Math.PI / 9);
                 if(this.flipCar){
                     this.flipCar=false;
                     this.flipDirection();
                 }
                 break;
             case "JUMP":
-                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.325 });
+                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.110 });
         }
     }
 }
