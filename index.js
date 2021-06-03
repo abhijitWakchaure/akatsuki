@@ -22,6 +22,8 @@ var passengersInCar = [];
 var destinationsAvailable = config.platform.destinations.slice(0);
 var currentPlatform = '';
 var passengerId = 1;
+var driverName = getDriverName();
+var globalTimer = 300;
 var leftScorecard = new LeftScorecard(), rightScorecard = new RightScorecard();
 function setup() {
     noCanvas();
@@ -132,6 +134,7 @@ function draw() {
         car.move("RIGHT")
     }
     if (frameCount % 60 == 0) {
+        globalTimer -= 1;
         leftScorecard.update();
         leftScorecard.show();
         rightScorecard.show()
@@ -293,24 +296,6 @@ function dropPassenger() {
         }
     }
     console.log("No passenger in car wants to drop here!")
-}
-
-function getX(x, width) {
-    return x + (width * 0.5);
-}
-
-function isPlatformPresent(i) {
-    for (var j = 0; j < world.bodies.length; j++) {
-        if (world.bodies[j].label == ('platform#' + i)) {
-            return world.bodies[j];
-        }
-    }
-    return;
-}
-
-function getRandomDestination() {
-    var index = random(destinationsAvailable.length);
-    return destinationsAvailable.splice(index, 1)[0];
 }
 
 window.addEventListener("resize", function () {
