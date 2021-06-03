@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, w, h, wheelRadius, passenger1Id, passenger2Id) {
+    constructor(x, y, w, h, wheelRadius, passenger1Id, passenger2Id,flipCar) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -11,6 +11,7 @@ class Car {
         this.maxVelocityX = config.car.maxVelocity;
         this.passenger1Id = passenger1Id;
         this.passenger2Id = passenger2Id;
+        this.flipCar=flipCar;
         this.createCarComposite(x, y, w, h, wheelRadius)
         Composite.add(world, this.composite);
     }
@@ -21,12 +22,33 @@ class Car {
 
     createCarComposite(xx, yy, width, height, wheelRadius) {
         var group = Body.nextGroup(true),
-            wheelAOffset = -width * 0.5 + wheelRadius + 3,
-            wheelBOffset = width * 0.5 - wheelRadius - 18,
             wheelYOffset = height - height * 0.5,
+            seatsYOffset = config.car.seats.yOffset,
+            carImageScale=0.8,
+            passengerImageScale=0.3,
+            wheelImageScale=0.67,
+            wheelAOffset, wheelBOffset, frontSeatXOffset, backSeatXOffset,
+            carImage, wheelImage, passenger1Image, passenger2Image;
+        if(this.flipCar){
+            wheelAOffset = width * 0.5 - wheelRadius - 5,
+            wheelBOffset = -width * 0.5 + wheelRadius + 18,
+            wheelYOffset = height - height * 0.5,
+            frontSeatXOffset = -config.car.frontSeat.xOffset,
+            backSeatXOffset = -config.car.backSeat.xOffset;
+            carImage='images/flipcar.png',
+            wheelImage='images/flipw1.png',
+            passenger1Image='images/flipf' + max(1, this.passenger1Id % 9) + '.png',
+            passenger2Image='images/flipf' + max(1, this.passenger2Id % 9) + '.png';
+        }else{
+            wheelAOffset = -width * 0.5 + wheelRadius + 5,
+            wheelBOffset = width * 0.5 - wheelRadius - 18,
             frontSeatXOffset = config.car.frontSeat.xOffset,
             backSeatXOffset = config.car.backSeat.xOffset,
-            seatsYOffset = config.car.seats.yOffset;
+            carImage='images/car.png',
+            wheelImage='images/w1.png',
+            passenger1Image='images/f' + max(1, this.passenger1Id % 9) + '.png',
+            passenger2Image='images/f' + max(1, this.passenger2Id % 9) + '.png';
+        }
         this.composite = Composite.create({ label: 'car' })
         this.body = Bodies.rectangle(xx, yy, width, height, {
             collisionFilter: {
@@ -37,9 +59,9 @@ class Car {
             // },
             render: {
                 sprite: {
-                    texture: 'images/car.png',
-                    xScale: 0.8,
-                    yScale: 0.8,
+                    texture: carImage,
+                    xScale: carImageScale,
+                    yScale: carImageScale,
                 }
             },
             density: 0.0002
@@ -56,9 +78,9 @@ class Car {
                 render: {
                     visible: true,
                     sprite: {
-                        texture: 'images/f' + max(1, this.passenger1Id % 9) + '.png',
-                        xScale: 0.3,
-                        yScale: 0.3,
+                        texture: passenger1Image,
+                        xScale: passengerImageScale,
+                        yScale: passengerImageScale,
                     },
                 },
                 density: 0.0001
@@ -71,9 +93,9 @@ class Car {
                 render: {
                     visible: true,
                     sprite: {
-                        texture: 'images/f' + max(1, this.passenger2Id % 9) + '.png',
-                        xScale: 0.3,
-                        yScale: 0.3,
+                        texture: passenger2Image,
+                        xScale: passengerImageScale,
+                        yScale: passengerImageScale,
                     }
                 },
                 density: 0.0001
@@ -92,9 +114,9 @@ class Car {
             friction: 0.8,
             render: {
                 sprite: {
-                    texture: 'images/w1.png',
-                    xScale: 0.67,
-                    yScale: 0.67,
+                    texture: wheelImage,
+                    xScale: wheelImageScale,
+                    yScale: wheelImageScale,
                 }
             },
             density: 0.00081
@@ -108,9 +130,9 @@ class Car {
             },
             render: {
                 sprite: {
-                    texture: 'images/w1.png',
-                    xScale: 0.67,
-                    yScale: 0.67,
+                    texture: wheelImage,
+                    xScale: wheelImageScale,
+                    yScale: wheelImageScale,
                 }
             },
             friction: 0.8,
@@ -198,9 +220,9 @@ class Car {
         var tempCar;
         this.remove();
         if (this.passenger2Id == 0) {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, passenger.passengerId);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, passenger.passengerId,this.flipCar);
         } else {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, passenger.passengerId, this.passenger2Id);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, passenger.passengerId, this.passenger2Id,this.flipCar);
         }
         Matter.Body.setAngle(tempCar.body, car.body.angle)
         Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
@@ -209,13 +231,23 @@ class Car {
         car = tempCar;
     }
 
+    flipDirection(){
+        var tempCar;
+        this.remove();
+        tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, this.passenger2Id,this.flipCar);
+        Matter.Body.setAngle(tempCar.body, car.body.angle)
+        Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
+        Matter.Body.setAngle(tempCar.wheelB, car.wheelB.angle)
+        Matter.Body.applyForce(tempCar.body, this.getPosition(), car.body.force)
+        car = tempCar;
+    }
     dropPassenger(passenger) {
         var tempCar;
         this.remove();
         if (this.passenger2Id == passenger.passengerId) {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, 0);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, this.passenger1Id, 0,this.flipCar);
         } else {
-            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, 0, this.passenger2Id);
+            tempCar = new Car(this.getPosition().x, this.getPosition().y, config.car.width, config.car.height, config.car.wheelRadius, 0, this.passenger2Id,this.flipCar);
         }
         Matter.Body.setAngle(tempCar.body, car.body.angle)
         Matter.Body.setAngle(tempCar.wheelA, car.wheelA.angle)
@@ -228,13 +260,21 @@ class Car {
         switch (direction) {
             case "LEFT":
                 Composite.translate(this.composite, { x: -this.maxVelocityX, y: 0 })
-                Body.rotate(this.wheelA, -Math.PI / 36);
-                Body.rotate(this.wheelB, -Math.PI / 36);
+                Body.rotate(this.wheelA, -Math.PI / 18);
+                Body.rotate(this.wheelB, -Math.PI / 18);
+                if(!this.flipCar){
+                    this.flipCar=true;
+                    this.flipDirection();
+                }
                 break;
             case "RIGHT":
                 Composite.translate(this.composite, { x: this.maxVelocityX, y: 0 })
                 Body.rotate(this.wheelA, Math.PI / 18);
                 Body.rotate(this.wheelB, Math.PI / 18);
+                if(this.flipCar){
+                    this.flipCar=false;
+                    this.flipDirection();
+                }
                 break;
             case "JUMP":
                 Body.applyForce(this.body, this.body.position, { x: 0, y: -0.325 });

@@ -65,7 +65,7 @@ function setup() {
     wallLeft = new Wall(0 - (wallThikness / 2), (screenHeight / 2), wallThikness, screenHeight);
 
     initialCarPos = { x: getX(100, 200), y: (config.canvas.height * 0.1) };
-    car = new Car(initialCarPos.x, initialCarPos.y, config.car.width, config.car.height, config.car.wheelRadius, 0, 0);
+    car = new Car(initialCarPos.x, initialCarPos.y, config.car.width, config.car.height, config.car.wheelRadius, 0, 0, false);
 
     // initialCarPos = Vector.magnitude(Vector.sub(car.getPosition(), viewportCentre))
     // fit the render viewport to the scene
