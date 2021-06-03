@@ -6,7 +6,7 @@ class LeftScorecard {
     update() {
         for (var i = 0; i < passengersInCar.length; i++) {
             passengersInCar[i].patience -= 1;
-            if (passengersInCar[i].patience <= 0) {
+            if (passengersInCar[i].patience <= 0 || globalTimer <= 0) {
                 console.log("Game Over")
                 noLoop();
                 $("#notice").html("Game Over!");
