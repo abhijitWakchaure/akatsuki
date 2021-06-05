@@ -23,8 +23,18 @@ var destinationsAvailable = config.platform.destinations.slice(0);
 var currentPlatform = '';
 var passengerId = 1;
 var driverName = getDriverName();
-var globalTimer = 300;
+var globalTimer = 180;
 var leftScorecard = new LeftScorecard(), rightScorecard = new RightScorecard();
+var backgroundSound, carDoorOpen, carDoorClose, carJump, carMove, gameOver;
+
+function preload() {
+    soundFormats("mp3", "ogg", "wav");
+    carDoorOpen = loadSound("assets/sound/car_door_open.wav");
+    carDoorClose = loadSound("assets/sound/car_door_close.wav");
+    carJump = loadSound("assets/sound/car_jump.wav");
+    gameOver = loadSound("assets/sound/game_over.ogg");
+}
+
 function setup() {
     noCanvas();
     config.canvas.width = windowWidth - config.canvas.margin;
@@ -97,12 +107,16 @@ function setup() {
                 if (passengersInCar.length < 2) {
                     console.log("Number of passengers in car before:", passengersInCar.length)
                     console.log("Adding passenger to car")
+                    carDoorOpen.play();
                     passengersInCar.push(passanger)
                     rightScorecard.pickPassenger()
                     passanger.isInsideCar = true;
                     car.addPassenger(passanger);
                     passanger.remove()
                     console.log("Number of passengers in car after:", passengersInCar.length)
+                    setTimeout(function () {
+                        carDoorClose.play();
+                    }, 400);
                     break;
                 } else {
                     console.log('Taxi full. No more passengers allowed. Please drop existing passengers first')
@@ -144,6 +158,7 @@ function draw() {
 function keyReleased() {
     if (keyCode == 32) {
         car.move("JUMP")
+        carJump.play();
     }
 }
 
@@ -284,11 +299,13 @@ function dropPassenger() {
         if (currentPlatform == passengersInCar[i].destination) {
             console.log("Dropping passenger now");
             console.log("Number of passengers in car before:", passengersInCar.length)
+            carDoorOpen.play();
             rightScorecard.updatePassengerDropped(passengersInCar[i]);
             car.dropPassenger(passengersInCar[i]);
             var dummyPassenger = new Passenger(passengersInCar[i].passengerId, car.getPosition().x + random(200, 300), car.getPosition().y, config.passenger.w, config.passenger.h, passengersInCar[i].destination);
             dummyPassenger.body.label = "droppedPassenger";
             passengersInCar.splice(i, 1)
+            setTimeout(function () { carDoorClose.play(); }, 300);
             console.log("Found platform with location:", currentPlatform);
             setTimeout(function () { dummyPassenger.body.remove(); }, 1000);
             console.log("Number of passengers in car after:", passengersInCar.length)
