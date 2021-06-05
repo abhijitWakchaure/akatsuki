@@ -19,6 +19,30 @@ function getDriverName() {
     }
 }
 
+function setScore(value) {
+    if (typeof (Storage) !== "undefined") {
+        sessionStorage.score = JSON.stringify(value);
+    } else {
+        console.error(`Sorry, your browser does not support web storage`);
+    }
+}
+
+function getScore() {
+    if (typeof (Storage) !== "undefined") {
+        if (sessionStorage.score) {
+            return JSON.parse(sessionStorage.score);
+        } else {
+            return {
+                score: 0,
+                happyPassengers: 0,
+                sadPassengers: 0
+            };
+        }
+    } else {
+        console.error(`Sorry, your browser does not support web storage`);
+    }
+}
+
 function getX(x, width) {
     return x + (width * 0.5);
 }

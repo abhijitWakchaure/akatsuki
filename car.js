@@ -35,19 +35,19 @@ class Car {
                 wheelYOffset = height - height * 0.5,
                 frontSeatXOffset = -config.car.frontSeat.xOffset,
                 backSeatXOffset = -config.car.backSeat.xOffset;
-            carImage = 'images/flipcar.png',
-                wheelImage = 'images/flipw1.png',
-                passenger1Image = 'images/flipf' + max(1, this.passenger1Id % 9) + '.png',
-                passenger2Image = 'images/flipf' + max(1, this.passenger2Id % 9) + '.png';
+            carImage = 'assets/images/flipcar.png',
+                wheelImage = 'assets/images/flipw1.png',
+                passenger1Image = 'assets/images/flipf' + max(1, this.passenger1Id % 9) + '.png',
+                passenger2Image = 'assets/images/flipf' + max(1, this.passenger2Id % 9) + '.png';
         } else {
             wheelAOffset = -width * 0.5 + wheelRadius + 3.13,
                 wheelBOffset = width * 0.5 - wheelRadius - 11.25,
                 frontSeatXOffset = config.car.frontSeat.xOffset,
                 backSeatXOffset = config.car.backSeat.xOffset,
-                carImage = 'images/car.png',
-                wheelImage = 'images/w1.png',
-                passenger1Image = 'images/f' + max(1, this.passenger1Id % 9) + '.png',
-                passenger2Image = 'images/f' + max(1, this.passenger2Id % 9) + '.png';
+                carImage = 'assets/images/car.png',
+                wheelImage = 'assets/images/w1.png',
+                passenger1Image = 'assets/images/f' + max(1, this.passenger1Id % 9) + '.png',
+                passenger2Image = 'assets/images/f' + max(1, this.passenger2Id % 9) + '.png';
         }
         this.composite = Composite.create({ label: 'car' })
         this.body = Bodies.rectangle(xx, yy, width, height, {

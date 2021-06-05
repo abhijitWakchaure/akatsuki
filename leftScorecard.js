@@ -5,24 +5,29 @@ class LeftScorecard {
 
     update() {
         for (var i = 0; i < passengersInCar.length; i++) {
-            passengersInCar[i].patience -= 1;
+            passengersInCar[i].patience -= 10;
             if (passengersInCar[i].patience <= 0 || globalTimer <= 0) {
                 console.log("Game Over")
+                rightScorecard.addSadPassenger();
+                rightScorecard.updatePersistentScore();
+                leftScorecard.animateNotice();
                 noLoop();
                 $("#notice").html("Game Over!");
                 $("#notice").show();
-                leftScorecard.animateNotice();
+                setTimeout(function () {
+                    window.location = "game-over.html";
+                }, 1000)
             }
         }
         if (passengersInCar.length > 0) {
             var nextDestination = passengersInCar[0].destination;
             if (typeof nextDestination !== 'undefined' && nextDestination != null)
-                $(".bg").css('background-image', 'url(images/places/' + nextDestination + '.jpg)')
+                $(".bg").css('background-image', 'url(assets/images/places/' + nextDestination + '.jpg)')
             else
-                $(".bg").css('background-image', 'url(images/places/Blank.jpg)')
+                $(".bg").css('background-image', 'url(assets/images/places/Blank.jpg)')
         }
         else {
-            $(".bg").css('background-image', 'url(images/places/Blank.jpg)')
+            $(".bg").css('background-image', 'url(assets/images/places/Blank.jpg)')
         }
     }
 
@@ -37,8 +42,8 @@ class LeftScorecard {
     show() {
         var html = `
         <div class="row animate__animated my-1" id="friendsInCar">
-            <div class="col-6">Friends in Car:</div>
-            <div class="col-6 text-right">${passengersInCar.length} / 2</div>
+            <div class="col-8">Friends in Car:</div>
+            <div class="col-4 text-right">${passengersInCar.length} / 2</div>
         </div>`;
 
         if (passengersInCar.length > 0) {

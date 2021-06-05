@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Over | Akatsuki</title>
+    <script
+      src="lib/jQuery/jquery-3.6.0.min.js"
+      type="text/javascript"
+    ></script>
+    <link rel="stylesheet" href="lib/animate/animate.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="utils.js?time=123456789" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="game-over-bg">
+      <div class="game-over-sad-ppl"></div>
+      <div class="container">
+        <div class="row pt-5">
+          <div class="col-2"></div>
+          <div class="col-8 rules-parent">
+            <h1 class="text-center">Game Over</h1>
+            <hr class="rules-hr" />
+            <div class="rules-text pt-3">
+              <p class="text-justify">
+                Ohh no! You missed your time window to visit your destination.
+                Make sure you keep better track of the time.
+              </p>
+              <p class="text-justify">Better luck next time!</p>
+              <div id="time-up-scorecard" class="mt-5">
+                <p class="text-justify">Here is your score card:</p>
+                <div class="row">
+                  <div class="col-6">Total Score:</div>
+                  <div class="col-6" id="scoreCardScore">0</div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Visited Places:</div>
+                  <div class="col-6" id="scoreCardHappyPassengers">0</div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Missed Places:</div>
+                  <div class="col-6" id="scoreCardSadPassengers">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var score = getScore();
+      $("#placesVisited").html(`${score.happyPassengers}`);
+      $("#scoreCardScore").html(`${score.score}`);
+      $("#scoreCardHappyPassengers").html(`${score.happyPassengers}`);
+      $("#scoreCardSadPassengers").html(`${score.sadPassengers}`);
+    </script>
+  </body>
+</html>

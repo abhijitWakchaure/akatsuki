@@ -60,14 +60,14 @@ function setup() {
 
     screenWidth = config.canvas.width;
     screenHeight = config.canvas.height;
-    wallThikness = 50
+    wallThikness = 100
 
     wallTop = new Wall(getX(0, screenWidth), (0 - wallThikness), screenWidth, wallThikness);
     wallRight = new Wall(screenWidth + (wallThikness / 2), (screenHeight / 2), wallThikness, screenHeight);
     wallBottom = new Wall(getX(0, screenWidth), (screenHeight - wallThikness / 2), screenWidth, wallThikness);
     wallLeft = new Wall(0 - (wallThikness / 2), (screenHeight / 2), wallThikness, screenHeight);
 
-    initialCarPos = { x: getX(100, 200), y: (config.canvas.height * 0.1) };
+    initialCarPos = { x: getX(100, 200), y: (config.canvas.height * 0.75) };
     car = new Car(initialCarPos.x, initialCarPos.y, config.car.width, config.car.height, config.car.wheelRadius, 0, 0, false);
 
     // initialCarPos = Vector.magnitude(Vector.sub(car.getPosition(), viewportCentre))

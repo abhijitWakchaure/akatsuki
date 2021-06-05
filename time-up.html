@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Up | Akatsuki</title>
+    <script
+      src="lib/jQuery/jquery-3.6.0.min.js"
+      type="text/javascript"
+    ></script>
+    <link rel="stylesheet" href="lib/animate/animate.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="utils.js?time=123456789" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="time-up-bg">
+      <div class="time-up-happy-ppl"></div>
+      <div class="container">
+        <div class="row pt-5">
+          <div class="col-2"></div>
+          <div class="col-8 rules-parent">
+            <h1 class="text-center">Time's Up</h1>
+            <hr class="rules-hr" />
+            <div class="rules-text pt-3">
+              <p class="text-justify">
+                Congratulations! You have managed to visit
+                <span id="placesVisited">0</span> place(s). But the time is up
+                and you cannot be found outside now. Come again tomorrow to
+                visit more places.
+              </p>
+              <p class="text-justify">See you soon!</p>
+              <div id="time-up-scorecard" class="mt-5">
+                <p class="text-justify">Here is your score card:</p>
+                <div class="row">
+                  <div class="col-6">Total Score:</div>
+                  <div class="col-6" id="scoreCardScore">0</div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Visited Places:</div>
+                  <div class="col-6" id="scoreCardHappyPassengers">0</div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Missed Places:</div>
+                  <div class="col-6" id="scoreCardSadPassengers">0</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var score = getScore();
+      $("#placesVisited").html(`${score.happyPassengers}`);
+      $("#scoreCardScore").html(`${score.score}`);
+      $("#scoreCardHappyPassengers").html(`${score.happyPassengers}`);
+      $("#scoreCardSadPassengers").html(`${score.sadPassengers}`);
+    </script>
+  </body>
+</html>

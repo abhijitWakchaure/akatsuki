@@ -7,7 +7,7 @@ class Passenger {
         this.body = Bodies.rectangle(x, y, w, h, {
             render: {
                 sprite: {
-                    texture: 'images/p' + max(1, id % 9) + '.png',
+                    texture: 'assets/images/p' + max(1, id % 9) + '.png',
                     xScale: 0.375,
                     yScale: 0.375,
                 }
