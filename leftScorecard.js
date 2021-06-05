@@ -6,19 +6,6 @@ class LeftScorecard {
     update() {
         for (var i = 0; i < passengersInCar.length; i++) {
             passengersInCar[i].patience -= 5;
-            if (passengersInCar[i].patience <= 0 || globalTimer <= 0) {
-                console.log("Game Over")
-                gameOver.play();
-                rightScorecard.addSadPassenger();
-                rightScorecard.updatePersistentScore();
-                leftScorecard.animateNotice();
-                noLoop();
-                $("#notice").html("Game Over!");
-                $("#notice").show();
-                setTimeout(function () {
-                    window.location = "game-over.html";
-                }, 4000)
-            }
         }
         if (passengersInCar.length > 0) {
             var nextDestination = passengersInCar[0].destination;

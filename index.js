@@ -23,7 +23,7 @@ var destinationsAvailable = config.platform.destinations.slice(0);
 var currentPlatform = '';
 var passengerId = 1;
 var driverName = getDriverName();
-var globalTimer = 180;
+var globalTimer = 10;
 var leftScorecard = new LeftScorecard(), rightScorecard = new RightScorecard();
 var backgroundSound, carDoorOpen, carDoorClose, carJump, carMove, gameOver;
 
@@ -152,13 +152,38 @@ function draw() {
         leftScorecard.update();
         leftScorecard.show();
         rightScorecard.show()
+        for (var i = 0; i < passengersInCar.length; i++) {
+            if (passengersInCar[i].patience <= 0) {
+                gameOver.play();
+                rightScorecard.addSadPassenger();
+                rightScorecard.updatePersistentScore();
+                leftScorecard.animateNotice();
+                noLoop();
+                $("#notice").html("Game Over!");
+                $("#notice").show();
+                setTimeout(function () {
+                    window.location = "game-over.html";
+                }, 4000)
+            }
+        }
+        if (globalTimer <= 0) {
+            gameOver.play();
+            rightScorecard.updatePersistentScore();
+            leftScorecard.animateNotice();
+            noLoop();
+            $("#notice").html("Time's Up!");
+            $("#notice").show();
+            setTimeout(function () {
+                window.location = "time-up.html";
+            }, 4000)
+        }
     }
 }
 
 function keyReleased() {
     if (keyCode == 32) {
         car.move("JUMP")
-        carJump.play();
+        // carJump.play();
     }
 }
 
