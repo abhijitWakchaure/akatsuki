@@ -6,15 +6,15 @@ class Platform {
         this.h = h;
         //platform will have no gravity effect
         this.body = Bodies.rectangle(x, y, w, h, {
-             isStatic: true,
-             render: {
+            isStatic: true,
+            render: {
                 sprite: {
-                    texture: 'images/milestones/'+d+'.png',
+                    texture: 'assets/images/milestones/' + d + '.png',
                     xScale: 1.2,
                     yScale: 1.2,
                 }
-            } 
-            });
+            }
+        });
         this.body.label = 'platform#' + i;
         this.body.location = d;
         Composite.add(world, this.body);

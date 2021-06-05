@@ -84,7 +84,7 @@ input[type="checkbox"] {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(2px) contrast(85%);
+  filter: blur(3px) contrast(85%);
   position: fixed;
   z-index: -999;
 }
