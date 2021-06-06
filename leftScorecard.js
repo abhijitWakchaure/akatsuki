@@ -5,7 +5,7 @@ class LeftScorecard {
 
     update() {
         for (var i = 0; i < passengersInCar.length; i++) {
-            passengersInCar[i].patience -= 5;
+            passengersInCar[i].patience -= 2;
         }
         if (passengersInCar.length > 0) {
             var nextDestination = passengersInCar[0].destination;

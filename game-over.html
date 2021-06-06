@@ -25,8 +25,9 @@
             <hr class="rules-hr" />
             <div class="rules-text pt-3">
               <p class="text-justify">
-                Ohh no! You missed your time window to visit your destination.
-                Make sure you keep better track of the time.
+                Ohh no! <span id="driverName"></span> you missed your time
+                window to visit your destination. Make sure you keep better
+                track of the time.
               </p>
               <p class="text-justify">Better luck next time!</p>
               <div id="time-up-scorecard" class="mt-5">
@@ -56,6 +57,7 @@
       $("#scoreCardScore").html(`${score.score}`);
       $("#scoreCardHappyPassengers").html(`${score.happyPassengers}`);
       $("#scoreCardSadPassengers").html(`${score.sadPassengers}`);
+      $("#driverName").html(`${getDriverName()}`);
     </script>
   </body>
 </html>

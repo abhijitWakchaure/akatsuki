@@ -25,10 +25,10 @@
             <hr class="rules-hr" />
             <div class="rules-text pt-3">
               <p class="text-justify">
-                Congratulations! You have managed to visit
-                <span id="placesVisited">0</span> place(s). But the time is up
-                and you cannot be found outside now. Come again tomorrow to
-                visit more places.
+                Congratulations <span id="driverName"></span>! You have managed
+                to visit <span id="placesVisited">0</span> place(s). But the
+                time is up and you cannot be found outside now. Come again
+                tomorrow to visit more places.
               </p>
               <p class="text-justify">See you soon!</p>
               <div id="time-up-scorecard" class="mt-5">
@@ -58,6 +58,7 @@
       $("#scoreCardScore").html(`${score.score}`);
       $("#scoreCardHappyPassengers").html(`${score.happyPassengers}`);
       $("#scoreCardSadPassengers").html(`${score.sadPassengers}`);
+      $("#driverName").html(`${getDriverName()}`);
     </script>
   </body>
 </html>

@@ -276,7 +276,7 @@ class Car {
                 }
                 break;
             case "JUMP":
-                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.140 });
+                Body.applyForce(this.body, this.body.position, { x: 0, y: -0.120 });
         }
     }
 }
